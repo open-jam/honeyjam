@@ -27,7 +27,6 @@ django-anymail = "*"
 django-cryptography = "*"
 django-htmlmin = "*"
 slacker = "*"
-django-summernote = "*"
 django-reversion = "*"
 
 [dev-packages]

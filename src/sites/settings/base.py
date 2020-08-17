@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'anymail',
     'reversion',
 
-    'django_summernote',
-
     # Apps
     'apps.domains.home',
 ]
@@ -172,5 +170,3 @@ LOGOUT_REDIRECT_URL = '/'
 HTML_MINIFY = True
 
 SLACK_API_KEY = Secrets.get(SecretKey.SLACK_API_KEY)
-
-SUMMERNOTE_THEME = 'bs4'
