@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "613deb27eb286db861058347493d65637691a179f236a3f3f8d2e847122d2c74"
+            "sha256": "467a305200ca7a4378a7b9833bb1fbd9443c051a345022255d940b184ac56baf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -112,11 +112,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:1226168be1b1c7efd0e66ee79b0e0b58b2caa7ed87717909cd8a57bb13a7079a",
-                "sha256:9a4635813e2d498a3c01b10c701fe4a515d76dd290aaa792ccb65ca4ccb6b038"
+                "sha256:3e2f5d172215862abf2bac3138d8a04229d34dbd2d0dab42c6bf33876cc22323",
+                "sha256:91f540000227eace0504a24f508de26daa756353aa7376c6972d7920bc339a3a"
             ],
             "index": "pypi",
-            "version": "==2.2.10"
+            "version": "==2.2.15"
         },
         "django-admin-ip-restrictor": {
             "hashes": [
@@ -185,13 +185,6 @@
             ],
             "index": "pypi",
             "version": "==3.0.7"
-        },
-        "django-summernote": {
-            "hashes": [
-                "sha256:c23dae35c287f0d3d1ff801654ace77c3c6836453162e87c7330710d74d2eb88"
-            ],
-            "index": "pypi",
-            "version": "==0.8.11.6"
         },
         "django-webpack-loader": {
             "hashes": [
@@ -654,11 +647,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:1226168be1b1c7efd0e66ee79b0e0b58b2caa7ed87717909cd8a57bb13a7079a",
-                "sha256:9a4635813e2d498a3c01b10c701fe4a515d76dd290aaa792ccb65ca4ccb6b038"
+                "sha256:3e2f5d172215862abf2bac3138d8a04229d34dbd2d0dab42c6bf33876cc22323",
+                "sha256:91f540000227eace0504a24f508de26daa756353aa7376c6972d7920bc339a3a"
             ],
             "index": "pypi",
-            "version": "==2.2.10"
+            "version": "==2.2.15"
         },
         "django-debug-toolbar": {
             "hashes": [
