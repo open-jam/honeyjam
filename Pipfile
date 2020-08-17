@@ -28,6 +28,7 @@ django-cryptography = "*"
 django-htmlmin = "*"
 slacker = "*"
 django-reversion = "*"
+django-allauth = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
