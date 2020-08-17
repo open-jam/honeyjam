@@ -15,7 +15,7 @@ ALLOWED_HOSTS = [
 ]
 
 # Static
-STATIC_URL = f'https://static.{PARENT_HOST}/'
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 # django-debug-toolbar
