@@ -1,0 +1,41 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"django" = "==2.2.10"
+"cryptography" = "*"
+django-ipware = "*"
+django-cors-headers = "*"
+uwsgi = "*"
+filelock = "*"
+django-admin-ip-restrictor = "*"
+sentry-sdk = "*"
+django-csp = "*"
+gunicorn = {extras = ["gevent"],version = "*"}
+mysqlclient = "*"
+pillow = "*"
+requests = "*"
+djangorestframework = "*"
+drf-yasg = "*"
+django-webpack-loader = "*"
+openpyxl = "*"
+python-dateutil = "*"
+sib-api-v3-sdk = "*"
+django-anymail = "*"
+django-cryptography = "*"
+django-htmlmin = "*"
+slacker = "*"
+django-summernote = "*"
+django-reversion = "*"
+
+[dev-packages]
+django-debug-toolbar = "*"
+pylint = "*"
+pylint-django = "*"
+flake8 = "*"
+autopep8 = "*"
+
+[requires]
+python_version = "3.8"

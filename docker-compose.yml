@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  mariadb:
+    image: mariadb:10.3
+    container_name: mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./.tmp/mysql:/var/lib/mysql
+      - ./.tmp/mysqld:/var/run/mysqld
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: honeyjam
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: test
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./docs/dev/nginx:/etc/nginx/conf.d:ro
+      - ./docs/dev/cert:/etc/nginx/cert/:ro
+    ports:
+      - 80:80
+      - 443:443
