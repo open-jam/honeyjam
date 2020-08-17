@@ -13,8 +13,8 @@ PARENT_HOST = 'honeyjam.dev'
 ALLOWED_HOSTS = [
     'honeyjam.dev',
 ]
-STATIC_URL = f'https://cdn.{PARENT_HOST}/static/'
-MEDIA_URL = f'https://cdn.{PARENT_HOST}/media/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # HSTS
 SECURE_HSTS_SECONDS = 31536000  # 365 * 24 * 60 * 60

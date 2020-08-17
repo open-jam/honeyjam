@@ -154,7 +154,7 @@ ALLOWED_ADMIN_PROXY_COUNT = 0
 RESTRICTED_APP_NAMES = ['admin', ]
 
 # Static files (CSS, JavaScript, Images)
-# STATIC_ROOT = os.path.join(BASE_PATH, 'static/dist')
+STATIC_ROOT = os.path.join(BASE_PATH, 'static/dist')
 # STATICFILES_DIRS = (os.path.join(BASE_PATH, 'static/build', ),)
 
 # Sentry
