@@ -26,7 +26,6 @@ class SecretKey(BaseConstant):
 
     SENTRY_DSN = 'sentry_dsn'
 
-    SENDINBLUE_API_KEY = 'sendinblue_api_key'
     SLACK_API_KEY = 'slack_api_key'
 
     WRITE_DB_NAME = 'write_db_name'
