@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # Apps
     'apps.domains.home',
+    'apps.domains.gag',
 ]
 
 MIDDLEWARE = [

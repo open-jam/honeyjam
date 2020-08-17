@@ -1,5 +1,5 @@
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
 from django.db.models import Manager
 
@@ -53,6 +53,6 @@ class BaseModel(ChangeMixin, models.Model):
         abstract = True
 
 
-class BaseUserModel(BaseModel, AbstractBaseUser, PermissionsMixin):
+class BaseUserModel(BaseModel, AbstractUser):
     class Meta:
         abstract = True

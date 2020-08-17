@@ -5,6 +5,7 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 
 from apps.domains.home import urls as home_urls
+from apps.domains.gag import urls as gag_urls
 from sites.urls import views
 
 handler400 = views.handler400
@@ -19,6 +20,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     path('', include(home_urls, namespace='home')),
+    path('gags/', include(gag_urls, namespace='gag')),
 ]
 
 if settings.DEBUG:
