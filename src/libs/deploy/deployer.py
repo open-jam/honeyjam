@@ -50,6 +50,7 @@ class Deployer:
         # Step 4. 새로운 버젼이 나왔으면 설치학고 reload
         subprocess.call('/deploy/deploy-master.sh', cwd=work_dir, shell=True)
         subprocess.call('make install-package', cwd=work_dir, shell=True)
+        subprocess.call('make build', cwd=work_dir, shell=True)
         subprocess.call('make migrate', cwd=work_dir, shell=True)
 
         # pylint:disable=import-error, import-outside-toplevel
