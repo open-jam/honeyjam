@@ -8,5 +8,9 @@ class GagRepository(BaseRepository):
     model_class = Gag
 
     @classmethod
-    def find_active(cls) -> List[Gag]:
-        return cls.get_queryset().filter(is_active=True).order_by('-id')
+    def find_active(cls, offset: int, limit: int) -> List[Gag]:
+        return cls.get_queryset().filter(is_active=True).order_by('-id')[offset:offset + limit]
+
+    @classmethod
+    def get_active_by_id(cls, gag_id: int) -> Gag:
+        return cls.get_queryset().get(is_active=True, gag_id=gag_id)

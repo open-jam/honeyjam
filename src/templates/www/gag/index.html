@@ -1,7 +1,70 @@
 {% extends "www/base.html" %}
 
-{% load socialaccount %}
-
 {% block content %}
-<a href="{% provider_login_url "facebook" method="oauth2" %}" target="_self">Facebook OAuth2</a>
+  <div class="container">
+    {% if user.is_authenticated %}
+      <div class="row justify-content-end mt-2">
+        <div class="col-4 text-right">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#gagAddModal">
+            추가
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="gagAddModal" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">개그 추가</h5>
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group row">
+                      <label for="gagQuestion" class="col-sm-2 col-form-label">문</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control" id="gagQuestion"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="gagAnswer" class="col-sm-2 col-form-label">답</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control" id="gagAnswer"></textarea>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                  <button type="button" class="btn btn-primary">저장</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="list-group mt-2">
+      {% for gag in gags %}
+        <a href="#" class="list-group-item list-group-item-action">
+          <div>
+            <h5 class="mb-1">{{ gag.question }}</h5>
+            <p class="mb-1">{{ gag.answer }}</p>
+          </div>
+
+          {% if gag.user.id == user.id %}
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-secondary">수정</button>
+              <button type="button" class="btn btn-danger">삭제</button>
+            </div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
