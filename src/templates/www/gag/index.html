@@ -59,11 +59,48 @@
 
           {% if gag.user_id == user.id %}
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-secondary">수정</button>
-              <button type="button" class="btn btn-danger" onclick="removeGag({{ gag.id }})">삭제</button>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#gagModifyModal-{{ gag.id }}">수정</button>
+              <button type="button" class="btn btn-danger" onclick="deleteGag({{ gag.id }})">삭제</button>
             </div>
           {% endif %}
         </a>
+
+        {% if gag.user_id == user.id %}
+          <div class="modal fade" id="gagModifyModal-{{ gag.id }}" tabindex="-1">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">개그 수정</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                <form>
+                  <div class="form-group row">
+                    <label for="gagQuestion-{{ gag.id }}" class="col-sm-2 col-form-label">문</label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control" id="gagQuestion-{{ gag.id }}">{{ gag.question }}</textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="gagAnswer-{{ gag.id }}" class="col-sm-2 col-form-label">답</label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control" id="gagAnswer-{{ gag.id }}">{{ gag.answer }}</textarea>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" onclick="modifyGag({{ gag.id }})">저장</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -88,7 +125,7 @@
       });
     }
 
-    function removeGag(gagId) {
+    function deleteGag(gagId) {
       fetch('/api/csrf-token/').then(res => res.json()).then(data => {
         const csrfToken = data.csrf_token
         fetch(`/api/gags/${gagId}/`, {
@@ -97,6 +134,23 @@
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken,
           },
+        }).then(() => location.reload());
+      });
+    }
+
+    function modifyGag(gagId) {
+      const question = $(`#gagQuestion-${gagId}`).val()
+      const answer = $(`#gagAnswer-${gagId}`).val()
+
+      fetch('/api/csrf-token/').then(res => res.json()).then(data => {
+        const csrfToken = data.csrf_token
+        fetch(`/api/gags/${gagId}/`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
+          body: JSON.stringify({ question, answer }),
         }).then(() => location.reload());
       });
     }

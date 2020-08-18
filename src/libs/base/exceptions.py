@@ -11,3 +11,7 @@ class RootException(Exception):
 
 class ErrorException(RootException):
     pass
+
+
+class NotAllowedAccessException(ErrorException):
+    pass
