@@ -40,7 +40,7 @@
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                  <button type="button" class="btn btn-primary">저장</button>
+                  <button type="button" class="btn btn-primary" onclick="addGag()">저장</button>
                 </div>
               </div>
             </div>
@@ -67,4 +67,25 @@
       {% endfor %}
     </div>
   </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    function addGag() {
+      const question = $('#gagQuestion').val()
+      const answer = $('#gagAnswer').val()
+
+      fetch('/api/csrf-token/').then(res => res.json()).then(data => {
+        const csrfToken = data.csrf_token
+        fetch('/api/gags/add/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
+          body: JSON.stringify({ question, answer }),
+        }).then(() => location.reload());
+      });
+    }
+  </script>
 {% endblock %}
