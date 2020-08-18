@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response
 
 
 def handler400(request, *args, **kawgs):
@@ -38,3 +38,7 @@ def handler500(request, *args, **kawgs):
     })
     response.status_code = 500
     return response
+
+
+def get_csrf_token(request):
+    return JsonResponse({'csrf_token': get_token(request)})

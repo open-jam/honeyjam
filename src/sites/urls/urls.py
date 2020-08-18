@@ -8,6 +8,7 @@ from apps.domains.home import urls as home_urls
 from apps.domains.gag.urls import www as gag_www_urls
 from apps.domains.gag.urls import api as gag_api_urls
 from sites.urls import views
+from sites.urls.views import get_csrf_token
 
 handler400 = views.handler400
 handler403 = views.handler403
@@ -26,6 +27,7 @@ urlpatterns = [
     # API
 
     path('api/gags/', include(gag_api_urls, namespace='gag_api')),
+    path('api/csrf-token/', get_csrf_token, name='get_csrf_token'),
 ]
 
 if settings.DEBUG:
