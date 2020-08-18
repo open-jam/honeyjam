@@ -15,8 +15,7 @@ class GagAddView(LoginRequiredMixin, BaseApiView):
     def post(self, request):
         serializer = GagQnAAddRequestSerializer(data=request.data)
         if not serializer.is_valid():
-            code = self.make_response_code(ApiStatusCodes.C_400_BAD_REQUEST)
-            return self.fail_response(response_code=code, data=serializer.errors)
+            return self.fail_response(response_code=self.make_response_code(ApiStatusCodes.C_400_BAD_REQUEST), data=serializer.errors)
 
         GagCreateService.create_qna(request.user, serializer.validated_data['question'], serializer.validated_data['answer'])
 
@@ -24,19 +23,23 @@ class GagAddView(LoginRequiredMixin, BaseApiView):
 
 
 class GagView(LoginRequiredMixin, BaseApiView):
-    @staticmethod
-    def get(request, gag_id: int):
+    def get(self, request, gag_id: int):
         gag = GagRepository.get_active_by_id(gag_id)
-        return render(request, 'www/gag/index.html', {'gag': gag})
+        return self.success_response()
 
-    @staticmethod
-    def put(request, gag_id: int):
+    def put(self, request, gag_id: int):
         gag = GagRepository.get_active_by_id(gag_id)
-        return redirect(reverse('gag:gag_list'))
+        if request.user.id != gag.user_id:
+            return self.fail_response(response_code=self.make_response_code(ApiStatusCodes.C_403_FORBIDDEN), )
 
-    @staticmethod
-    def delete(request, gag_id: int):
+        return self.success_response()
+
+    def delete(self, request, gag_id: int):
         gag = GagRepository.get_active_by_id(gag_id)
+        if request.user.id != gag.user_id:
+            return self.fail_response(response_code=self.make_response_code(ApiStatusCodes.C_403_FORBIDDEN), )
+
+        gag.is_active = False
         gag.save()
 
-        return redirect(reverse('gag:gag_list'))
+        return self.success_response()

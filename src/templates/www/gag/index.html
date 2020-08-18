@@ -57,10 +57,10 @@
             <p class="mb-1">{{ gag.answer }}</p>
           </div>
 
-          {% if gag.user.id == user.id %}
+          {% if gag.user_id == user.id %}
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-secondary">수정</button>
-              <button type="button" class="btn btn-danger">삭제</button>
+              <button type="button" class="btn btn-danger" onclick="removeGag({{ gag.id }})">삭제</button>
             </div>
           {% endif %}
         </a>
@@ -84,6 +84,19 @@
             'X-CSRFToken': csrfToken,
           },
           body: JSON.stringify({ question, answer }),
+        }).then(() => location.reload());
+      });
+    }
+
+    function removeGag(gagId) {
+      fetch('/api/csrf-token/').then(res => res.json()).then(data => {
+        const csrfToken = data.csrf_token
+        fetch(`/api/gags/${gagId}/`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
         }).then(() => location.reload());
       });
     }

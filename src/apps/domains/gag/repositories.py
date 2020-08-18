@@ -13,4 +13,4 @@ class GagRepository(BaseRepository):
 
     @classmethod
     def get_active_by_id(cls, gag_id: int) -> Gag:
-        return cls.get_queryset().get(is_active=True, gag_id=gag_id)
+        return cls.get_queryset().get(is_active=True, id=gag_id)
